@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import productRoute from "./routes/productRoute.js";
+import reviewRoute from "./routes/reviewsRoute.js";
 import connectDB from "./config/db.js";
 import cors from "cors";
 
@@ -15,6 +16,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/products", productRoute);
+app.use("/api/reviews", reviewRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
