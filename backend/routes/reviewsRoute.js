@@ -13,13 +13,14 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { image, username, rating, comment } = req.body;
+    const { productId, username, rating, comment } = req.body;
     const review = await Review.create({
-      image,
+      productId,
       username,
       rating,
       comment,
     });
+
     return res.status(201).json(review);
   } catch (error) {
     return res.status(500).json({ message: error.message });

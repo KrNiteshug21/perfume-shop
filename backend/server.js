@@ -4,6 +4,7 @@ import productRoute from "./routes/productRoute.js";
 import reviewRoute from "./routes/reviewsRoute.js";
 import connectDB from "./config/db.js";
 import cors from "cors";
+import { logger } from "./logger/logger.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 connectDB();
-
+app.use(logger);
 app.use("/api/products", productRoute);
 app.use("/api/reviews", reviewRoute);
 

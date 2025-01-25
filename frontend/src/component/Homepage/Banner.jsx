@@ -36,7 +36,7 @@ const Banner = () => {
                 </span>
               </p>
             </div>
-            <div className="flex-shrink-0 order-3 sm:order-2 mt-2 sm:mt-0 w-full sm:w-auto">
+            <div className="flex-shrink-0 order-3 sm:order-2 mt-2 sm:mt-0 sm:w-auto">
               <Link
                 to="/products"
                 className="flex justify-center items-center bg-white hover:bg-gold-100 shadow-sm px-4 py-2 border border-transparent rounded-md font-medium text-sm text-teal-600"

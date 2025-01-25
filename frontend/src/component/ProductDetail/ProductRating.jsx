@@ -1,7 +1,19 @@
 import { Star } from "lucide-react";
 import React from "react";
 
-const ProductRating = ({ rating, reviewCount }) => {
+function calculateAverageRating(reviews) {
+  if (reviews.length === 0) return 0;
+  const sum = reviews.reduce(
+    (acc, review) => acc + parseFloat(review.rating),
+    0
+  );
+  return sum / reviews.length;
+}
+
+const ProductRating = ({ reviews }) => {
+  const rating = calculateAverageRating(reviews);
+  const reviewCount = reviews.length;
+
   return (
     <div className="flex items-center">
       <div className="flex items-center">

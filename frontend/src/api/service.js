@@ -8,8 +8,6 @@ export const getProducts = () => {
   const [error, setError] = useState(null);
   const [isError, setIsError] = useState(false);
 
-  console.log("data", data);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -54,4 +52,38 @@ export const getProductById = (id) => {
   }, [id]);
 
   return { data, loading, error, isError };
+};
+
+export const addReview = async (review) => {
+  try {
+    const response = await fetch(`${uri}/reviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(review),
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const updateProduct = async (id, reviewId) => {
+  try {
+    const response = await fetch(`${uri}/products/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: reviewId }),
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return error;
+  }
 };

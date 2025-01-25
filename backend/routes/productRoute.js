@@ -1,5 +1,6 @@
 import express from "express";
 import Product from "../models/Product.js";
+import Review from "../models/Reviews.js";
 
 const router = express.Router();
 
@@ -51,12 +52,16 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const { review } = req.body;
+    const reviewId = req.body.id;
 
     const product = await Product.findById(req.params.id);
-
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
+    }
+
+    const review = await Review.findById(reviewId);
+    if (!review) {
+      return res.status(404).json({ message: "Review not found" });
     }
 
     product.reviews.push(review);

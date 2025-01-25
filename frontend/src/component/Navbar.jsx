@@ -1,13 +1,17 @@
-import React from "react";
+import { AlignRight, X } from "lucide-react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 
 const navData = [
-  { name: "Home", path: "/" },
-  { name: "Products", path: "/products" },
+  { name: "Collection", path: "#" },
+  { name: "About", path: "#" },
+  { name: "Contact", path: "#" },
   { name: "Cart", path: "#" },
 ];
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="top-0 z-10 sticky bg-gradient-to-r from-teal-600 to-teal-800 p-2 text-lg text-white">
       <div className="flex justify-between items-center mx-auto max-w-screen-xl">
@@ -16,16 +20,40 @@ const Navbar = () => {
             Perfume Haven
           </Link>
         </div>
-        <div className="flex items-center gap-2">
+
+        <div className="sm:flex items-center gap-2 hidden">
           {navData.map((item) => (
             <Link
               className="hover:bg-teal-700 px-3 py-1 rounded"
-              key={item.path}
+              key={item.name}
               to={item.path}
             >
               {item.name}
             </Link>
           ))}
+        </div>
+
+        <div className="block sm:hidden">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            <AlignRight />
+          </button>
+
+          {isOpen && (
+            <div className="top-12 right-2 z-20 absolute bg-teal-600 shadow-lg p-4 rounded-md w-52 text-white/80">
+              <button className="" onClick={() => setIsOpen(false)}>
+                <X />
+              </button>
+              {navData.map((item) => (
+                <Link
+                  className="block hover:bg-teal-700 p-2 rounded-md text-left"
+                  key={item.name}
+                  to={item.path}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </nav>

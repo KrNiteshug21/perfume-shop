@@ -5,11 +5,11 @@ import HeroSection from "./HeroSection";
 
 const Homepage = () => {
   return (
-    <div>
+    <>
       <Banner />
       <HeroSection />
       <LatestCollection />
-    </div>
+    </>
   );
 };
 
