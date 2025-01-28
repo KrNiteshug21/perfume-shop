@@ -1,9 +1,9 @@
 import React from "react";
 import { getProducts } from "../../api/service";
-import SectionWrapper from "../SectionWrapper";
+import SectionWrapper from "../Wrapper/SectionWrapper";
 import { Link } from "react-router";
 
-const ProductCard = ({ product }) => {
+export const ProductCard = ({ product }) => {
   return (
     <div className="space-y-2 border-2 border-gray-200 p-2 rounded-md w-full">
       <div className="relative w-full h-72 overflow-hidden">
@@ -31,6 +31,7 @@ const ProductCard = ({ product }) => {
 };
 
 const LatestCollection = () => {
+  const token = localStorage.getItem("token");
   const { data, loading, isError, error } = getProducts();
   // console.log("data", data);
 
@@ -47,9 +48,10 @@ const LatestCollection = () => {
           <div>Error: {error.message}</div>
         ) : (
           <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-4">
-            {data?.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
+            {token &&
+              data?.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
           </div>
         )}
       </div>

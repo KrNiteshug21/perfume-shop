@@ -1,7 +1,7 @@
 import React from "react";
 import { getProductById } from "../../api/service";
 import { useParams } from "react-router";
-import SectionWrapper from "../SectionWrapper";
+import SectionWrapper from "../Wrapper/SectionWrapper";
 import ProductContent from "./ProductContent";
 import ReviewInfo from "./ReviewInfo";
 import Carousel from "./Carousel";

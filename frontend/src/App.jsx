@@ -5,6 +5,9 @@ import { Route, Routes } from "react-router";
 import Homepage from "./component/Homepage/homepage";
 import ProductPage from "./component/Product/ProductPage";
 import ProductDetailPage from "./component/ProductDetail/ProductDetailPage";
+import Login from "./component/Profile/Login";
+import Register from "./component/Profile/Register";
+import AuthMiddleware from "./middleware/AuthMiddleware";
 
 function App() {
   return (
@@ -12,9 +15,32 @@ function App() {
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          {/* <Route path="/products" element={<ProductPage />} /> */}
-          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route
+            path="/"
+            element={
+              <AuthMiddleware>
+                <Homepage />
+              </AuthMiddleware>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <AuthMiddleware>
+                <ProductPage />
+              </AuthMiddleware>
+            }
+          />
+          <Route
+            path="/products/:id"
+            element={
+              <AuthMiddleware>
+                <ProductDetailPage />
+              </AuthMiddleware>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
     </div>

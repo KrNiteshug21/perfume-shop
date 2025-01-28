@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const uri = "http://localhost:5000/api";
+export const uri = "http://localhost:5000/api";
+const token = localStorage.getItem("token");
 
 export const getProducts = () => {
   const [data, setData] = useState([]);
@@ -11,7 +12,14 @@ export const getProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${uri}/products`);
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await fetch(`${uri}/products`, options);
         const result = await response.json();
         setData(result);
       } catch (error) {
@@ -37,7 +45,14 @@ export const getProductById = (id) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${uri}/products/${id}`);
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await fetch(`${uri}/products/${id}`, options);
         const result = await response.json();
         setData(result);
       } catch (error) {
@@ -60,6 +75,7 @@ export const addReview = async (review) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Add token to the header
       },
       body: JSON.stringify(review),
     });
@@ -77,6 +93,7 @@ export const updateProduct = async (id, reviewId) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Add token to the header
       },
       body: JSON.stringify({ id: reviewId }),
     });

@@ -2,6 +2,9 @@
 
 @import "tailwindcss";
 
+:root {
+  --border-1: 1px solid #e2e8f0;
+}
 /* .App {
   font-family: "Poppins", serif;
   font-optical-sizing: auto;
